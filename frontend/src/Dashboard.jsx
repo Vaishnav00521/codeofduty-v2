@@ -1,10 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Zap,
-  MapPin,
-  CloudLightning,
-  Activity
+  Shield, 
+  Bell, 
+  Settings as SettingsIcon, 
+  Landmark, 
+  Map as MapIcon,
+  ChevronRight,
+  Activity,
+  MapPin
 } from 'lucide-react';
 
 export default function Dashboard() {
@@ -26,123 +30,159 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans text-white flex justify-center py-0 md:py-8 relative overflow-hidden">
+    <div className="h-full flex-1 bg-[#141414] font-sans text-white flex flex-col relative overflow-hidden">
       
-      {/* Subtle radial-gradient glow effects in the corners */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[120px] pointer-events-none" />
+      {/* Top Header Section */}
+      <motion.header 
+        className="px-6 py-5 flex justify-between items-center bg-[#1c1c1c] border-b border-white/5"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+      >
+        <div className="flex items-center gap-3">
+          <div className="bg-blue-600 p-2 rounded-full shadow-lg">
+            <Shield className="w-5 h-5 text-white fill-white" />
+          </div>
+          <h1 className="text-xl font-bold tracking-tight text-white">RiderShield</h1>
+        </div>
+        <div className="flex items-center gap-4 text-gray-400">
+          <Bell className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+          <SettingsIcon className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+        </div>
+      </motion.header>
+      
+      {/* Location Selector / Status Bar */}
+      <motion.div 
+        className="px-6 py-3 flex items-center gap-2 bg-[#181818] border-b border-white/5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <MapPin className="w-4 h-4 text-blue-500" />
+        <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Koramangala, BLR</span>
+      </motion.div>
 
-      {/* Main Mobile App Container */}
-      <div className="w-full max-w-md min-h-screen md:min-h-[850px] relative z-10 md:rounded-[2.5rem] md:border md:border-white/10 overflow-hidden shadow-2xl bg-black/10">
-        
-        <motion.div 
-          className="px-5 py-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Top Nav: Glassy header */}
-          <motion.header 
-            className="flex justify-between items-center mb-6 bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl rounded-3xl px-4 py-3" 
-            variants={itemVariants}
-          >
-            <div className="flex items-center gap-2">
-              <Zap className="w-6 h-6 text-white fill-white" />
-              <h1 className="text-xl font-bold text-white tracking-tight">CodeofDuty</h1>
-            </div>
-            <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center font-bold border border-white/30 text-white shadow-inner">
-              R
-            </div>
-          </motion.header>
-
-          {/* Zone Tag */}
-          <motion.div variants={itemVariants} className="mb-6 flex justify-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg px-4 py-2 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.1)] border border-white/20 text-sm font-medium text-white">
-              <MapPin className="w-4 h-4 text-blue-400" />
-              Zepto Zone: Koramangala
-              <div className="w-2 h-2 bg-white rounded-full animate-pulse ml-1 shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
-            </div>
-          </motion.div>
-
-          {/* Critical Rule Banner */}
-          <motion.div variants={itemVariants} className="mb-8">
-            <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-3 text-center">
-              <p className="text-xs font-medium text-slate-300 tracking-wide uppercase">
-                Active Policy: <span className="text-emerald-400 font-bold tracking-wide">Loss of Income ONLY</span>
-              </p>
-            </div>
-          </motion.div>
-
-          {/* The Hero Card (Weekly Premium) */}
-          <motion.div variants={itemVariants} className="mb-8">
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl rounded-3xl p-6 relative overflow-hidden">
-              
-              {/* Glass reflection swoosh */}
-              <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/10 to-transparent opacity-30 pointer-events-none" />
-
-              <div className="relative z-10">
-                <p className="text-slate-400 text-sm font-semibold mb-4 uppercase tracking-widest text-center w-full">
-                  AI Adjusted Premium
-                </p>
-                
-                <div className="flex items-baseline justify-center gap-2 mb-6">
-                  <span className="text-6xl font-extrabold text-white tracking-tighter drop-shadow-md">₹65</span>
-                  <span className="text-xl text-slate-400 font-medium">/ week</span>
-                </div>
-
-                {/* AI Alert Notification */}
-                <div className="bg-amber-500/10 border border-amber-500/30 backdrop-blur-md rounded-2xl p-4 shadow-lg shadow-amber-500/5">
-                  <p className="text-sm text-amber-100/90 leading-relaxed font-medium">
-                    <span className="text-amber-400 font-bold tracking-wide">⚠️ +₹15 this week:</span> 85% probability of severe waterlogging.
-                  </p>
+      <motion.div 
+        className="flex-1 overflow-y-auto px-5 py-6 pb-24 no-scrollbar"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Instant Payout Balance Card */}
+        <motion.div variants={itemVariants} className="mb-8">
+          <div className="bg-[#242424] rounded-[2rem] p-6 shadow-xl border border-white/5">
+            <div className="flex justify-between items-start mb-6">
+              <div>
+                <p className="text-gray-400 text-sm font-medium mb-1">Instant Payout Balance</p>
+                <h2 className="text-3xl font-extrabold text-white tracking-tight">₹64.00</h2>
+              </div>
+              <div className="text-right">
+                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Primary Method</p>
+                <div className="flex items-center gap-3 bg-[#1c1c1c] p-2 pr-4 rounded-full border border-white/10">
+                  <div className="bg-white/10 p-2 rounded-full">
+                    <Landmark className="w-4 h-4 text-gray-300" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-[10px] font-bold text-white leading-tight">Bank ••••</p>
+                    <p className="text-[10px] text-gray-500 font-medium">1245</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </motion.div>
+            
+            <p className="text-xs text-gray-400 mb-6 leading-relaxed">
+              Available for one-tap withdrawal after approval
+            </p>
 
-          {/* Live Triggers (Grid Layout) */}
-          <motion.div variants={itemVariants}>
-            <div className="grid grid-cols-2 gap-4">
-              
-              {/* Box 1: Weather API */}
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl rounded-3xl p-5 flex flex-col justify-between aspect-square relative hover:bg-white/15 transition-colors"
-              >
-                <div className="flex justify-between items-start mb-2">
-                  <div className="bg-white/10 p-3 rounded-2xl text-white border border-white/20 backdrop-blur-md">
-                    <CloudLightning className="w-6 h-6" />
-                  </div>
-                  <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_12px_rgba(52,211,153,0.9)] mt-2 mr-1"></div>
-                </div>
-                <div>
-                  <h3 className="font-bold text-white text-base">Weather API</h3>
-                  <p className="text-xs text-slate-400 font-medium mt-1 leading-snug">Rainfall/AQI</p>
-                </div>
-              </motion.div>
-
-              {/* Box 2: Traffic Data */}
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl rounded-3xl p-5 flex flex-col justify-between aspect-square relative hover:bg-white/15 transition-colors"
-               >
-                <div className="flex justify-between items-start mb-2">
-                  <div className="bg-white/10 p-3 rounded-2xl text-white border border-white/20 backdrop-blur-md">
-                    <Activity className="w-6 h-6" />
-                  </div>
-                  <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_12px_rgba(52,211,153,0.9)] mt-2 mr-1"></div>
-                </div>
-                <div>
-                  <h3 className="font-bold text-white text-base">Traffic Data</h3>
-                  <p className="text-xs text-slate-400 font-medium mt-1 leading-snug">Strike Blockades</p>
-                </div>
-              </motion.div>
-
+            <div className="flex gap-3">
+              <button className="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-2xl text-sm transition-all shadow-lg active:scale-95">
+                One-Tap Withdraw
+              </button>
+              <button className="flex-1 bg-white text-black font-bold py-3.5 rounded-2xl text-sm transition-all shadow-lg active:scale-95">
+                Manage Methods
+              </button>
             </div>
-          </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Auto-detected Claims Header */}
+        <motion.div variants={itemVariants} className="flex justify-between items-center mb-5 px-1">
+          <h3 className="text-lg font-bold text-white tracking-tight">Auto-detected Claims</h3>
+        </motion.div>
+
+        {/* Ongoing Claims Container */}
+        <motion.div variants={itemVariants} className="w-full">
+          
+          {/* Claim Card 1: Sudden Stop */}
+          <div className="w-full bg-[#242424] rounded-[2rem] p-6 border border-white/5 relative overflow-hidden group">
+            
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h4 className="text-lg font-bold text-white mb-1">Incident: Sudden Stop</h4>
+                <p className="text-[10px] text-gray-500 font-medium uppercase tracking-widest">Detected: 2026-03-27 08:14</p>
+              </div>
+              <div className="bg-amber-400 px-3 py-1 rounded-full shadow-lg shadow-amber-400/10">
+                <span className="text-[10px] font-extrabold text-black uppercase tracking-wider">Pending</span>
+              </div>
+            </div>
+
+            <div className="flex justify-between mb-6">
+              <div>
+                <p className="text-gray-400 text-xs font-semibold mb-1 uppercase tracking-widest">Lost hours</p>
+                <p className="text-2xl font-bold text-white">3.5h</p>
+              </div>
+              <div className="text-right">
+                <p className="text-gray-400 text-xs font-semibold mb-1 uppercase tracking-widest">Payout</p>
+                <p className="text-2xl font-bold text-white">₹30.00</p>
+                <p className="text-[10px] text-gray-500 font-medium mt-0.5">₹8.50/hr × 3.5h</p>
+              </div>
+            </div>
+
+            {/* Evidence Thumbnails */}
+            <div className="mb-6">
+              <p className="text-gray-400 text-xs font-bold mb-3 uppercase tracking-widest">Evidence</p>
+              <div className="flex gap-3">
+                <div className="w-14 h-14 rounded-full bg-[#1c1c1c] border border-white/10 flex items-center justify-center overflow-hidden">
+                   <div className="w-full h-full bg-slate-800 relative">
+                      <div className="absolute inset-x-0 top-1/2 h-0.5 bg-red-600/40 rotate-12" />
+                      <div className="absolute inset-y-1/2 left-1/2 w-0.5 bg-blue-600/40 -rotate-12" />
+                      <p className="absolute bottom-1 right-1 text-[6px] text-white/20 font-bold">GPS</p>
+                   </div>
+                </div>
+                <div className="w-14 h-14 rounded-full bg-[#1c1c1c] border border-white/10 flex items-center justify-center overflow-hidden">
+                   <div className="w-full h-full bg-slate-700/50">
+                      <MapIcon className="w-full h-full p-3.5 text-blue-400/30" />
+                   </div>
+                </div>
+                <div className="w-14 h-14 rounded-full bg-[#1c1c1c] border border-white/10 flex items-center justify-center overflow-hidden">
+                   <div className="w-full h-full flex flex-col items-start justify-center p-2 opacity-30">
+                      <div className="w-full h-0.5 bg-white/20 mb-1 rounded-full" />
+                      <div className="w-3/4 h-0.5 bg-white/20 mb-1 rounded-full" />
+                      <div className="w-1/2 h-0.5 bg-white/30 rounded-full" />
+                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* AI Rationale */}
+            <div className="bg-[#1c1c1c] rounded-2xl p-4 border border-white/5">
+              <p className="text-xs text-gray-300 leading-relaxed font-medium">
+                <span className="text-blue-400 font-bold block mb-1">AI Rationale:</span>
+                Speed sensor spike + GPS idle window indicates interruption. Confidence 92%.
+              </p>
+            </div>
+
+            <div className="mt-4 flex justify-between items-center text-[10px] text-gray-500 font-bold tracking-wider uppercase">
+               <span>Expected payout: 24-48 hrs</span>
+               <ChevronRight className="w-4 h-4 text-gray-600" />
+            </div>
+
+          </div>
+
+
 
         </motion.div>
-      </div>
+
+      </motion.div>
+
     </div>
   );
 }

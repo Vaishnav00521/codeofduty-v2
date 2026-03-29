@@ -19,11 +19,11 @@ export default function ClaimSimulator() {
     { id: 1, text: "OpenWeatherMap API Triggered: Rainfall > 30mm/hr", icon: CloudLightning },
     { id: 2, text: "Platform Sync: Zepto Operations Halted in Koramangala", icon: ShieldAlert },
     { id: 3, text: "Smart Contract Execution: 4 Hours of Income Lost", icon: Banknote },
-    { id: 4, text: "Instant Payout Dispatched: ₹450 sent to UPI via Razorpay", icon: CheckCircle }
+    { id: 4, text: "Instant Payout Dispatched: ₹5,230 sent to UPI via Razorpay", icon: CheckCircle }
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 font-sans text-white p-5 relative overflow-hidden">
+    <div className="h-full flex-1 bg-[#141414] font-sans text-white p-5 relative overflow-hidden">
       
       {/* Background radial highlight corresponding to emergency UI */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none transition-opacity duration-1000" style={{ opacity: simulationStep === 0 ? 1 : 0.2 }} />

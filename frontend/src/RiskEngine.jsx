@@ -13,7 +13,7 @@ export default function RiskEngine() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans text-white p-5 relative overflow-hidden">
+    <div className="h-full flex-1 bg-[#141414] font-sans text-white p-5 relative overflow-hidden">
       {/* Background glow effects simulating AI processing environment */}
       <div className="absolute -top-20 left-10 w-[300px] h-[300px] bg-purple-600/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />

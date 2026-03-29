@@ -22,29 +22,23 @@ export default function Onboarding({ onComplete }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans text-white flex items-center justify-center relative py-4 md:py-8 overflow-hidden">
+    <div className="h-full flex-1 bg-[#141414] font-sans text-white flex items-center justify-center relative py-4 md:py-8 overflow-hidden">
       
-      {/* Plexus Vibe Glows (Neural Network AI aesthetic) */}
-      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-blue-500/20 rounded-full blur-[100px] animate-[pulse_4s_ease-in-out_infinite] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-purple-500/20 rounded-full blur-[100px] animate-[pulse_3s_ease-in-out_infinite] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Main Form Container */}
+
+      {/* Main Form Container - Card removed, now full-width mobile layout */}
       <motion.div 
-        className="w-full max-w-md bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-3xl p-8 relative z-10 m-4"
+        className="w-full max-w-md px-10 py-8 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Header */}
         <motion.div variants={itemVariants} className="text-center mb-10">
-          <div className="flex justify-center mb-4">
-            <div className="bg-white/10 p-4 rounded-2xl border border-white/20 shadow-lg backdrop-blur-md">
-              <Zap className="w-10 h-10 text-blue-400 fill-blue-400" />
-            </div>
-          </div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight mb-2">CodeofDuty</h1>
-          <p className="text-sm text-slate-400 font-medium uppercase tracking-widest">AI-Powered Income Protection</p>
+          <h1 className="text-4xl font-extrabold tracking-wide drop-shadow-lg mb-2 relative z-10">
+            <span className="text-white">Rider</span><span className="text-[#f5db94]">Shield</span>
+          </h1>
+          <p className="text-sm text-slate-400 font-medium uppercase tracking-widest relative z-20">AI-Powered Income Protection</p>
         </motion.div>
 
         {/* Form Input Elements */}
