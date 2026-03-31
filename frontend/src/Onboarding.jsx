@@ -8,12 +8,16 @@ export default function Onboarding({ onComplete }) {
     platform: "Zepto",
     operatingZone: "Vadodara, GJ"
   });
+  // 1. Make sure this is at the top of your component
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
   const [loading, setLoading] = useState(false);
 
   const handleInitialize = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/api/workers/onboard', {
+      // 2. Swapped the hardcoded string for backticks and the dynamic variable
+      const response = await fetch(`${API_BASE_URL}/api/workers/onboard`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -41,7 +45,7 @@ export default function Onboarding({ onComplete }) {
 
   return (
     <div className="h-full flex-1 bg-transparent font-sans text-white flex items-center justify-center relative py-8 px-6 overflow-hidden z-20 w-full">
-      <motion.div 
+      <motion.div
         className="w-full max-w-sm flex flex-col"
         variants={containerVariants}
         initial="hidden"
@@ -50,8 +54,8 @@ export default function Onboarding({ onComplete }) {
         {/* Header Elements */}
         <motion.div variants={itemVariants} className="flex flex-col items-center mb-10">
           <div className="relative mb-5 drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-             <Hexagon className="w-16 h-16 text-blue-500 stroke-1 animate-[spin_10s_linear_infinite]" />
-             <User className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 text-white" />
+            <Hexagon className="w-16 h-16 text-blue-500 stroke-1 animate-[spin_10s_linear_infinite]" />
+            <User className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 text-white" />
           </div>
           <h1 className="text-2xl font-black tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 drop-shadow-md">
             Profile Sync
@@ -61,18 +65,18 @@ export default function Onboarding({ onComplete }) {
 
         {/* Input Form Box */}
         <motion.div variants={itemVariants} className="space-y-4 mb-8 p-6 bg-slate-900/60 border border-blue-500/20 backdrop-blur-2xl rounded-3xl shadow-[0_0_40px_rgba(59,130,246,0.1)]">
-          
+
           <div className="relative group">
             <p className="text-[9px] text-blue-300 font-bold uppercase tracking-widest pl-1 mb-1.5 opacity-80">Rider Identity</p>
             <div className="absolute inset-y-0 left-0 pl-4 top-[22px] flex items-center pointer-events-none">
               <User className="h-4 w-4 text-blue-500/50 group-focus-within:text-cyan-400 transition-colors" />
             </div>
-            <input 
-              type="text" 
-              className="w-full bg-black/40 border border-white/10 text-white text-sm font-medium rounded-xl focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 block pl-11 p-3.5 placeholder-slate-600 outline-none transition-all shadow-inner" 
+            <input
+              type="text"
+              className="w-full bg-black/40 border border-white/10 text-white text-sm font-medium rounded-xl focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 block pl-11 p-3.5 placeholder-slate-600 outline-none transition-all shadow-inner"
               placeholder="Rahul Kumar"
               value={formData.fullName}
-              onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
             />
           </div>
 
@@ -81,12 +85,12 @@ export default function Onboarding({ onComplete }) {
             <div className="absolute inset-y-0 left-0 pl-4 top-[26px] flex items-center pointer-events-none">
               <Briefcase className="h-4 w-4 text-blue-500/50 group-focus-within:text-cyan-400 transition-colors" />
             </div>
-            <input 
-              type="text" 
-              className="w-full bg-black/40 border border-white/10 text-white text-sm font-medium rounded-xl focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 block pl-11 p-3.5 placeholder-slate-600 outline-none transition-all shadow-inner" 
+            <input
+              type="text"
+              className="w-full bg-black/40 border border-white/10 text-white text-sm font-medium rounded-xl focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 block pl-11 p-3.5 placeholder-slate-600 outline-none transition-all shadow-inner"
               placeholder="Zepto"
               value={formData.platform}
-              onChange={(e) => setFormData({...formData, platform: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, platform: e.target.value })}
             />
           </div>
 
@@ -95,18 +99,18 @@ export default function Onboarding({ onComplete }) {
             <div className="absolute inset-y-0 left-0 pl-4 top-[26px] flex items-center pointer-events-none">
               <MapPin className="h-4 w-4 text-blue-500/50 group-focus-within:text-cyan-400 transition-colors" />
             </div>
-            <input 
-              type="text" 
-              className="w-full bg-black/40 border border-white/10 text-white text-sm font-medium rounded-xl focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 block pl-11 p-3.5 placeholder-slate-600 outline-none transition-all shadow-inner" 
+            <input
+              type="text"
+              className="w-full bg-black/40 border border-white/10 text-white text-sm font-medium rounded-xl focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 block pl-11 p-3.5 placeholder-slate-600 outline-none transition-all shadow-inner"
               placeholder="Koramangala, BLR"
               value={formData.operatingZone}
-              onChange={(e) => setFormData({...formData, operatingZone: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, operatingZone: e.target.value })}
             />
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="mt-auto">
-          <button 
+          <button
             type="button"
             onClick={handleInitialize}
             disabled={loading}

@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PlayCircle, ShieldAlert, CloudLightning, Banknote, HelpCircle, Loader2 } from 'lucide-react';
 
 export default function ClaimSimulator() {
+  // 1. Moved to the top level of the component
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [claimResult, setClaimResult] = useState(null);
@@ -13,14 +16,15 @@ export default function ClaimSimulator() {
     setClaimResult(null);
 
     try {
-      const response = await fetch('http://localhost:8080/api/claims/trigger', {
+      const response = await fetch(`${API_BASE_URL}/api/claims/trigger`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ zone: "Koramangala", platform: "Zepto" })
       });
 
       if (!response.ok) {
-        throw new Error("Connection failed. Is the backend running on port 8080?");
+        // 2. Updated the error message to be accurate for production
+        throw new Error("Connection failed. Check if the backend is live.");
       }
 
       const data = await response.json();
@@ -38,16 +42,16 @@ export default function ClaimSimulator() {
         <header className="mb-10 text-center">
           <h1 className="text-2xl font-extrabold text-white tracking-tight">Live Parametric Trigger Engine</h1>
           <div className="mt-4 flex flex-col gap-2 relative">
-             <div className="bg-amber-500/10 border border-amber-500/30 text-amber-500 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2">
-               <ShieldAlert size={14} /> Strictly replacing Lost Hours/Wages.
-             </div>
-             <div className="bg-blue-500/10 border border-blue-500/30 text-blue-500 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2">
-               <HelpCircle size={14} /> Zero vehicle/medical coverage.
-             </div>
+            <div className="bg-amber-500/10 border border-amber-500/30 text-amber-500 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2">
+              <ShieldAlert size={14} /> Strictly replacing Lost Hours/Wages.
+            </div>
+            <div className="bg-blue-500/10 border border-blue-500/30 text-blue-500 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2">
+              <HelpCircle size={14} /> Zero vehicle/medical coverage.
+            </div>
           </div>
         </header>
 
-        <button 
+        <button
           onClick={handleTrigger}
           disabled={isLoading}
           className="w-full bg-red-600 hover:bg-red-500 text-white font-extrabold rounded-2xl text-[13px] tracking-wide px-5 py-5 text-center transition-all shadow-[0_0_30px_rgba(220,38,38,0.5)] active:scale-95 disabled:opacity-50 disabled:active:scale-100 flex items-center justify-center gap-2"
@@ -71,7 +75,7 @@ export default function ClaimSimulator() {
 
         <AnimatePresence>
           {claimResult && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="mt-8 bg-emerald-950/80 border border-emerald-500/40 backdrop-blur-xl shadow-[0_0_40px_rgba(16,185,129,0.3)] rounded-3xl p-6 relative overflow-hidden"
@@ -82,11 +86,11 @@ export default function ClaimSimulator() {
                   <Banknote className="w-6 h-6 text-emerald-400" />
                 </div>
                 <div>
-                   <h2 className="text-lg font-bold text-emerald-400">Success Receipt</h2>
-                   <p className="text-[10px] text-emerald-200/50 uppercase tracking-widest">{claimResult.transactionId}</p>
+                  <h2 className="text-lg font-bold text-emerald-400">Success Receipt</h2>
+                  <p className="text-[10px] text-emerald-200/50 uppercase tracking-widest">{claimResult.transactionId}</p>
                 </div>
               </div>
-              
+
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
                   <span className="text-emerald-100/60">Status</span>

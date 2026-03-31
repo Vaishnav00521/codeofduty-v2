@@ -2,17 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { 
-  Navigation, 
-  CloudRain, 
+import {
+  Navigation,
+  CloudRain,
   Cloud,
   Sun,
   CloudSnow,
   Wind,
   Thermometer,
-  Clock, 
-  AlertTriangle, 
-  MapPin, 
+  Clock,
+  AlertTriangle,
+  MapPin,
   Store,
   ArrowRight,
   Radio,
@@ -28,10 +28,10 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 L.Marker.prototype.options.icon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconShadow,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41]
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41]
 });
 
 // TomTom API Key (matches backend)
@@ -103,6 +103,9 @@ function WeatherIcon({ condition, size = 16 }) {
 }
 
 export default function SmartRoute() {
+  // 1. Add the dynamic URL variable at the top of your component
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
   const [routeData, setRouteData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentPositionIdx, setCurrentPositionIdx] = useState(0);
@@ -112,14 +115,15 @@ export default function SmartRoute() {
 
   // Bangalore: Zepto Store → HSR Layout Customer
   const start = { lat: 12.9344, lon: 77.6101, name: 'Zepto Store #12' };
-  const end   = { lat: 12.9141, lon: 77.6413, name: 'HSR Layout Customer' };
+  const end = { lat: 12.9141, lon: 77.6413, name: 'HSR Layout Customer' };
 
   // ── Fetch route from backend ────────────────────────────────────────────
   useEffect(() => {
     const fetchRoute = async () => {
       try {
+        // 2. Inject the API_BASE_URL right before /api
         const res = await fetch(
-          `http://localhost:8080/api/logistics/smart-route?sLat=${start.lat}&sLon=${start.lon}&eLat=${end.lat}&eLon=${end.lon}`
+          `${API_BASE_URL}/api/logistics/smart-route?sLat=${start.lat}&sLon=${start.lon}&eLat=${end.lat}&eLon=${end.lon}`
         );
         const data = await res.json();
         setRouteData(data);
@@ -169,7 +173,7 @@ export default function SmartRoute() {
   const hasRainAlert = routeData?.weatherAlerts?.some(w => w.condition?.includes('Rain'));
   const isHighRisk = trafficDelay > 300 || hasRainAlert;
   const isElevatedRisk = trafficDelay > 60 && !isHighRisk;
-  
+
   const routeColor = isHighRisk ? '#ef4444' : isElevatedRisk ? '#f59e0b' : '#3b82f6';
   const pulseClass = isHighRisk ? 'animate-pulse' : '';
 
@@ -221,13 +225,13 @@ export default function SmartRoute() {
             <Polyline
               className={pulseClass}
               positions={remainingRoute}
-              pathOptions={{ 
-                 color: routeColor, 
-                 weight: isHighRisk ? 7 : 5, 
-                 opacity: 0.9, 
-                 lineJoin: 'round', 
-                 lineCap: 'round',
-                 dashArray: isHighRisk ? '10 10' : undefined
+              pathOptions={{
+                color: routeColor,
+                weight: isHighRisk ? 7 : 5,
+                opacity: 0.9,
+                lineJoin: 'round',
+                lineCap: 'round',
+                dashArray: isHighRisk ? '10 10' : undefined
               }}
             />
           )}
@@ -344,11 +348,10 @@ export default function SmartRoute() {
                 routeData.weatherAlerts.map((w, i) => {
                   const hasAlert = w.alert && w.alert !== 'Clear';
                   return (
-                    <div key={i} className={`rounded-2xl p-3 border ${
-                      hasAlert
-                        ? 'bg-amber-500/10 border-amber-500/20'
-                        : 'bg-white/5 border-white/10'
-                    }`}>
+                    <div key={i} className={`rounded-2xl p-3 border ${hasAlert
+                      ? 'bg-amber-500/10 border-amber-500/20'
+                      : 'bg-white/5 border-white/10'
+                      }`}>
                       {/* Condition Row */}
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
@@ -398,11 +401,10 @@ export default function SmartRoute() {
         <button
           onClick={startTracking}
           disabled={isTracking || polylineCoords.length === 0}
-          className={`w-full font-bold py-4 rounded-2xl text-[13px] flex items-center justify-center gap-2 transition-all active:scale-95 ${
-            isTracking
-              ? 'bg-emerald-600/30 text-emerald-400 border border-emerald-500/30'
-              : 'bg-white text-black hover:bg-blue-50'
-          }`}
+          className={`w-full font-bold py-4 rounded-2xl text-[13px] flex items-center justify-center gap-2 transition-all active:scale-95 ${isTracking
+            ? 'bg-emerald-600/30 text-emerald-400 border border-emerald-500/30'
+            : 'bg-white text-black hover:bg-blue-50'
+            }`}
         >
           {isTracking ? (
             <><Radio className="w-4 h-4 animate-pulse" /> Tracking Live...</>
