@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700" /> <stop offset="100%" stop-color="#00E5FF" /> </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <path d="M100 15 L180 45 L180 120 C180 180 100 225 100 225 C100 225 20 180 20 120 L20 45 Z" fill="url(#shieldGrad)" filter="url(#glow)" fill-opacity="0.8" stroke="#00FFFF" stroke-width="4"/>
+  <path d="M100 15 L100 225 C100 225 20 180 20 120 L20 45 Z" fill="#ffffff" fill-opacity="0.25"/>
+  <path d="M100 30 L160 55 L160 115 C160 160 100 195 100 195 C100 195 40 160 40 115 L40 55 Z" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+</svg>

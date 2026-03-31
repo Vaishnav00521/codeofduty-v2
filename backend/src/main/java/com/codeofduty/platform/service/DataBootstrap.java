@@ -4,6 +4,8 @@ import com.codeofduty.platform.model.Policy;
 import com.codeofduty.platform.model.Worker;
 import com.codeofduty.platform.repository.PolicyRepository;
 import com.codeofduty.platform.repository.WorkerRepository;
+import com.codeofduty.platform.repository.ClaimRepository;
+import com.codeofduty.platform.model.Claim;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -22,6 +24,7 @@ public class DataBootstrap implements CommandLineRunner {
 
     private final WorkerRepository workerRepository;
     private final PolicyRepository policyRepository;
+    private final ClaimRepository claimRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -53,6 +56,19 @@ public class DataBootstrap implements CommandLineRunner {
                     .endDate(LocalDate.now().plusDays(2))
                     .weeklyPremiumAmount(50.0)
                     .isActive(true)
+                    .build());
+        }
+
+        if (claimRepository.findAll().isEmpty() && worker != null) {
+            log.info("Creating initial APPROVED claim to show instant payout balance...");
+            Policy p = policyRepository.findAll().get(0);
+            claimRepository.save(Claim.builder()
+                    .policy(p)
+                    .triggerEvent("Heavy Flooding (AI Confirmed)")
+                    .lostHours(3)
+                    .payoutAmount(450.0)
+                    .description("Automated payout triggered by environmental satellite hazard API.")
+                    .status("APPROVED")
                     .build());
         }
 

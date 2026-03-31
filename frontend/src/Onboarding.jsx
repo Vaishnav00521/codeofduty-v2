@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Briefcase, MapPin, Zap, RefreshCw } from 'lucide-react';
+import { User, Briefcase, MapPin, Zap, RefreshCw, Hexagon } from 'lucide-react';
 
 export default function Onboarding({ onComplete }) {
   const [formData, setFormData] = useState({
     fullName: "Rahul Kumar",
     platform: "Zepto",
-    operatingZone: "Koramangala, BLR"
+    operatingZone: "Vadodara, GJ"
   });
   const [loading, setLoading] = useState(false);
 
@@ -23,117 +23,102 @@ export default function Onboarding({ onComplete }) {
       }
     } catch (err) {
       console.error("Onboarding failed:", err);
-      // Fallback for demo
-      onComplete();
+      onComplete(); // fallback for UI demonstration
     } finally {
       setLoading(false);
     }
   };
+
   const containerVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { duration: 0.5, staggerChildren: 0.1 }
-    }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5, staggerChildren: 0.1 } }
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { type: "spring", stiffness: 100 }
-    }
+    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } }
   };
 
   return (
-    <div className="h-full flex-1 bg-[#141414] font-sans text-white flex items-center justify-center relative py-4 md:py-8 overflow-hidden">
-      
-
-
-      {/* Main Form Container - Card removed, now full-width mobile layout */}
+    <div className="h-full flex-1 bg-transparent font-sans text-white flex items-center justify-center relative py-8 px-6 overflow-hidden z-20 w-full">
       <motion.div 
-        className="w-full max-w-md px-10 py-8 relative z-10"
+        className="w-full max-w-sm flex flex-col"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Header */}
-        <motion.div variants={itemVariants} className="text-center mb-10">
-          <h1 className="text-4xl font-extrabold tracking-wide drop-shadow-lg mb-2 relative z-10">
-            <span className="text-white">Rider</span><span className="text-[#f5db94]">Shield</span>
+        {/* Header Elements */}
+        <motion.div variants={itemVariants} className="flex flex-col items-center mb-10">
+          <div className="relative mb-5 drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+             <Hexagon className="w-16 h-16 text-blue-500 stroke-1 animate-[spin_10s_linear_infinite]" />
+             <User className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 text-white" />
+          </div>
+          <h1 className="text-2xl font-black tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 drop-shadow-md">
+            Profile Sync
           </h1>
-          <p className="text-sm text-slate-400 font-medium uppercase tracking-widest relative z-20">AI-Powered Income Protection</p>
+          <p className="text-[10px] text-blue-400/80 font-bold tracking-[0.2em] uppercase mt-2">Connecting Active Nodes</p>
         </motion.div>
 
-        {/* Form Input Elements */}
-        <motion.div variants={itemVariants} className="space-y-5 mb-8">
+        {/* Input Form Box */}
+        <motion.div variants={itemVariants} className="space-y-4 mb-8 p-6 bg-slate-900/60 border border-blue-500/20 backdrop-blur-2xl rounded-3xl shadow-[0_0_40px_rgba(59,130,246,0.1)]">
           
-          {/* Input 1: Full Name */}
           <div className="relative group">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <User className="h-5 w-5 text-slate-400 group-focus-within:text-blue-400 transition-colors" />
+            <p className="text-[9px] text-blue-300 font-bold uppercase tracking-widest pl-1 mb-1.5 opacity-80">Rider Identity</p>
+            <div className="absolute inset-y-0 left-0 pl-4 top-[22px] flex items-center pointer-events-none">
+              <User className="h-4 w-4 text-blue-500/50 group-focus-within:text-cyan-400 transition-colors" />
             </div>
             <input 
               type="text" 
-              className="w-full bg-black/20 border border-white/10 text-white text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 block pl-11 p-3.5 placeholder-slate-500 outline-none transition-all shadow-inner" 
+              className="w-full bg-black/40 border border-white/10 text-white text-sm font-medium rounded-xl focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 block pl-11 p-3.5 placeholder-slate-600 outline-none transition-all shadow-inner" 
               placeholder="Rahul Kumar"
               value={formData.fullName}
               onChange={(e) => setFormData({...formData, fullName: e.target.value})}
             />
           </div>
 
-          {/* Input 2: Delivery Platform */}
-          <div className="relative group">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <Briefcase className="h-5 w-5 text-slate-400 group-focus-within:text-blue-400 transition-colors" />
+          <div className="relative group pt-1">
+            <p className="text-[9px] text-blue-300 font-bold uppercase tracking-widest pl-1 mb-1.5 opacity-80">Telemetry Platform</p>
+            <div className="absolute inset-y-0 left-0 pl-4 top-[26px] flex items-center pointer-events-none">
+              <Briefcase className="h-4 w-4 text-blue-500/50 group-focus-within:text-cyan-400 transition-colors" />
             </div>
             <input 
               type="text" 
-              className="w-full bg-black/20 border border-white/10 text-white text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 block pl-11 p-3.5 placeholder-slate-500 outline-none transition-all shadow-inner" 
+              className="w-full bg-black/40 border border-white/10 text-white text-sm font-medium rounded-xl focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 block pl-11 p-3.5 placeholder-slate-600 outline-none transition-all shadow-inner" 
               placeholder="Zepto"
               value={formData.platform}
               onChange={(e) => setFormData({...formData, platform: e.target.value})}
             />
           </div>
 
-          {/* Input 3: Operating Zone */}
-          <div className="relative group">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <MapPin className="h-5 w-5 text-slate-400 group-focus-within:text-blue-400 transition-colors" />
+          <div className="relative group pt-1">
+            <p className="text-[9px] text-blue-300 font-bold uppercase tracking-widest pl-1 mb-1.5 opacity-80">Operations Sector</p>
+            <div className="absolute inset-y-0 left-0 pl-4 top-[26px] flex items-center pointer-events-none">
+              <MapPin className="h-4 w-4 text-blue-500/50 group-focus-within:text-cyan-400 transition-colors" />
             </div>
             <input 
               type="text" 
-              className="w-full bg-black/20 border border-white/10 text-white text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 block pl-11 p-3.5 placeholder-slate-500 outline-none transition-all shadow-inner" 
+              className="w-full bg-black/40 border border-white/10 text-white text-sm font-medium rounded-xl focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 block pl-11 p-3.5 placeholder-slate-600 outline-none transition-all shadow-inner" 
               placeholder="Koramangala, BLR"
               value={formData.operatingZone}
               onChange={(e) => setFormData({...formData, operatingZone: e.target.value})}
             />
           </div>
-
         </motion.div>
 
-        {/* CTA Button */}
-        <motion.div variants={itemVariants} className="mb-6">
+        <motion.div variants={itemVariants} className="mt-auto">
           <button 
             type="button"
             onClick={handleInitialize}
             disabled={loading}
-            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl text-lg px-5 py-4 text-center shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_30px_rgba(79,70,229,0.6)] transition-all border border-blue-400/30 flex justify-center items-center gap-2"
+            className="w-full bg-blue-600/90 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-[12px] py-4.5 p-4 text-center shadow-[0_0_25px_rgba(59,130,246,0.3)] hover:shadow-[0_0_40px_rgba(59,130,246,0.5)] transition-all flex justify-center items-center gap-3 backdrop-blur-md border border-blue-400/40 active:scale-95 disabled:opacity-50"
           >
-            {loading && <RefreshCw className="w-5 h-5 animate-spin" />}
-            {loading ? "Protecting Account..." : "Initialize AI Risk Engine"}
+            {loading ? (
+              <><RefreshCw className="w-4 h-4 animate-spin" /> ESTABLISHING LINK...</>
+            ) : (
+              <><Zap className="w-4 h-4" /> Initialize Connection</>
+            )}
           </button>
         </motion.div>
-
-        {/* Trust Badge Constraints */}
-        <motion.div variants={itemVariants} className="text-center px-4">
-          <p className="text-xs text-slate-400 leading-relaxed">
-             Strictly covering Loss of Income from <span className="text-slate-300 font-medium">Weather & Social Disruptions.</span>
-          </p>
-        </motion.div>
-
       </motion.div>
     </div>
   );

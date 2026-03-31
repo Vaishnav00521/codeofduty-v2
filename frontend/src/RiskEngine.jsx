@@ -30,14 +30,14 @@ export default function RiskEngine() {
 
   if (loading) {
     return (
-      <div className="h-full flex items-center justify-center bg-[#141414]">
+      <div className="h-full flex items-center justify-center bg-transparent">
         <RefreshCw className="w-8 h-8 text-purple-500 animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="h-full flex-1 bg-[#141414] font-sans text-white p-5 relative overflow-hidden">
+    <div className="h-full flex-1 bg-transparent font-sans text-white p-5 pt-8 relative overflow-hidden">
       <div className="absolute -top-20 left-10 w-[300px] h-[300px] bg-purple-600/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
       
@@ -90,7 +90,7 @@ export default function RiskEngine() {
         </motion.div>
 
         <motion.div variants={itemVariants} className="mb-6">
-          <div className="bg-slate-900/90 backdrop-blur-md border border-slate-700 shadow-xl rounded-3xl p-5 relative overflow-hidden">
+          <div className="bg-white/5 backdrop-blur-md border border-cyan-500/20 shadow-[0_0_30px_rgba(6,182,212,0.1)] rounded-3xl p-5 relative overflow-hidden">
             <h2 className="text-sm font-semibold text-slate-300 uppercase tracking-widest mb-4 flex items-center gap-2 relative z-10">
               <Map className="w-4 h-4 text-blue-400" /> Dynamic Risk Node
             </h2>

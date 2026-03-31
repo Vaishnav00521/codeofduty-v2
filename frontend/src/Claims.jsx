@@ -26,7 +26,8 @@ export default function Claims() {
   const [manualClaim, setManualClaim] = useState({
     triggerEvent: "Inclement Weather / Hazard",
     lostHours: 0,
-    description: ""
+    description: "",
+    evidence: ""
   });
 
   const fetchClaims = async () => {
@@ -82,9 +83,9 @@ export default function Claims() {
   };
 
   return (
-    <div className="h-full flex-1 bg-[#141414] font-sans text-white flex flex-col relative overflow-hidden">
+    <div className="h-full flex-1 bg-transparent font-sans text-white flex flex-col relative overflow-hidden">
       
-      <div className="flex-1 overflow-y-auto px-5 py-6 pb-24 no-scrollbar">
+      <div className="flex-1 overflow-y-auto px-5 pt-8 pb-24 no-scrollbar">
         {/* Past Claims Section */}
         <motion.section variants={itemVariants} initial="hidden" animate="visible" className="mb-8">
           <div className="flex justify-between items-center mb-4 px-1">
@@ -93,11 +94,12 @@ export default function Claims() {
           </div>
           <div className="space-y-3">
             {claims.length > 0 ? claims.map((claim) => (
-              <div key={claim.id} className="bg-[#1c1c1c] border border-white/5 rounded-2xl p-4 flex justify-between items-center group active:scale-95 transition-all">
+              <div key={claim.id} className="bg-white/5 border border-white/10 shadow-lg backdrop-blur-sm rounded-2xl p-4 flex justify-between items-center group active:scale-95 transition-all hover:bg-white/10">
                 <div className="flex-1">
                   <p className="text-sm font-bold text-white mb-0.5">Claim #{claim.id?.substring(0,8)}</p>
                   <p className="text-[10px] text-gray-500 font-medium">
                     {claim.triggerEvent} • <span className="text-gray-400">₹{(claim.payoutAmount ?? 0).toFixed(2)}</span>
+                    {claim.evidence && <span className="text-blue-400 ml-2 border border-blue-500/30 px-1 py-0.5 rounded text-[8px]">EVIDENCE ATTACHED</span>}
                   </p>
                 </div>
                 <div className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
@@ -109,8 +111,8 @@ export default function Claims() {
                 </div>
               </div>
             )) : (
-              <div className="text-center py-8 bg-[#1c1c1c]/50 rounded-2xl">
-                 <p className="text-xs text-gray-500 italic">No claims processed yet.</p>
+              <div className="text-center py-8 bg-white/5 rounded-2xl border border-white/10 border-dashed">
+                 <p className="text-xs text-gray-400 italic">No claims processed yet.</p>
               </div>
             )}
           </div>
@@ -118,7 +120,7 @@ export default function Claims() {
 
         {/* Secure Payment Methods Section (Static display, managed in Home) */}
         <motion.section variants={itemVariants} initial="hidden" animate="visible" className="mb-8">
-          <div className="bg-[#1c1c1c] border border-white/5 rounded-[2rem] p-6 shadow-xl">
+          <div className="bg-slate-900/50 backdrop-blur-md border border-emerald-500/20 rounded-[2rem] p-6 shadow-[0_0_30px_rgba(16,185,129,0.1)]">
             <div className="flex justify-between items-start mb-6">
               <div className="max-w-[150px]">
                 <h3 className="text-base font-bold mb-1">Encrypted Payouts</h3>
@@ -138,7 +140,7 @@ export default function Claims() {
 
         {/* Manual Claim (Edge Case) Section */}
         <motion.section variants={itemVariants} initial="hidden" animate="visible" className="mb-4">
-          <div className="bg-[#1c1c1c] border border-blue-500/20 rounded-[2rem] p-6">
+          <div className="bg-blue-950/20 backdrop-blur-md border border-blue-500/30 shadow-[0_0_40px_rgba(59,130,246,0.15)] rounded-[2rem] p-6">
             <h3 className="text-base font-bold text-blue-400 mb-6 border-b border-blue-500/20 pb-2">Manual Claim Request</h3>
             
             <div className="space-y-6">
@@ -174,6 +176,17 @@ export default function Claims() {
                   placeholder="Describe what happened..."
                   value={manualClaim.description}
                   onChange={e => setManualClaim({...manualClaim, description: e.target.value})}
+                />
+              </div>
+
+              <div>
+                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-3 flex items-center gap-1"><Camera className="w-3 h-3"/> Evidence / Proof Link</p>
+                <input 
+                  type="text"
+                  className="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-sm text-white outline-none focus:border-blue-500" 
+                  placeholder="Photo URL or detailed proof..."
+                  value={manualClaim.evidence}
+                  onChange={e => setManualClaim({...manualClaim, evidence: e.target.value})}
                 />
               </div>
 

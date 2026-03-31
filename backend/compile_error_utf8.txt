@@ -1,0 +1,387 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.codeofduty:platform >-----------------------
+[INFO] Building CodeofDuty 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ platform ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ platform ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 25 source files with javac [debug release 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[29,9] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.controller.NavigationController
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[40,34] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.dto.SmartRouteResponse
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[50,59] cannot find symbol
+  symbol:   method getCondition()
+  location: variable w of type com.codeofduty.platform.dto.WeatherPoint
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[50,96] cannot find symbol
+  symbol:   method getCondition()
+  location: variable w of type com.codeofduty.platform.dto.WeatherPoint
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[53,39] cannot find symbol
+  symbol:   method getTrafficDelaySeconds()
+  location: variable route of type com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[53,81] cannot find symbol
+  symbol:   method getTrafficDelaySeconds()
+  location: variable route of type com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[56,56] cannot find symbol
+  symbol:   method getTrafficDelaySeconds()
+  location: variable route of type com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[60,75] cannot find symbol
+  symbol:   method getTrafficDelaySeconds()
+  location: variable route of type com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[62,70] cannot find symbol
+  symbol:   method getTravelTimeSeconds()
+  location: variable route of type com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/LogisticsService.java:[52,38] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.dto.Coordinate
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/LogisticsService.java:[58,29] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/LogisticsService.java:[65,13] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.service.LogisticsService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/LogisticsService.java:[85,43] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.dto.WeatherPoint
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/LogisticsService.java:[93,13] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.service.LogisticsService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[28,9] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.service.DataBootstrap
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[32,57] cannot find symbol
+  symbol:   method getOperatingZone()
+  location: variable w of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[35,21] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.service.DataBootstrap
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[36,56] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[45,100] cannot find symbol
+  symbol:   method getOperatingZone()
+  location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[46,76] cannot find symbol
+  symbol:   method getId()
+  location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[49,13] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.service.DataBootstrap
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[49,69] cannot find symbol
+  symbol:   method getFullName()
+  location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[50,41] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.model.Policy
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[59,9] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.service.DataBootstrap
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[43,9] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.controller.WorkerController
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[43,53] cannot find symbol
+  symbol:   method getFullName()
+  location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[47,37] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.model.Policy
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[64,15] cannot find symbol
+  symbol:   method setUpiId(java.lang.String)
+  location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[74,57] cannot find symbol
+  symbol:   method setOperatingZone(java.lang.String)
+  location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[75,52] cannot find symbol
+  symbol:   method setPlatform(java.lang.String)
+  location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[44,49] cannot find symbol
+  symbol:   method getStatus()
+  location: variable c of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[45,36] cannot find symbol
+  symbol:   method getPayoutAmount()
+  location: variable c of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[45,66] cannot find symbol
+  symbol:   method getPayoutAmount()
+  location: variable c of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[50,16] constructor ClaimSummary in class com.codeofduty.platform.controller.ClaimController.ClaimSummary cannot be applied to given types;
+  required: no arguments
+  found:    double,int,com.codeofduty.platform.model.Claim
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[59,49] cannot find symbol
+  symbol:   method getStatus()
+  location: variable c of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[64,32] cannot find symbol
+  symbol:   method setStatus(java.lang.String)
+  location: variable c of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[70,62] invalid method reference
+  cannot find symbol
+    symbol:   method getPayoutAmount(T)
+    location: class com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[68,49] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.model.Notification
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[84,25] invalid method reference
+  cannot find symbol
+    symbol:   method getIsActive(T)
+    location: class com.codeofduty.platform.model.Policy
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[88,29] cannot find symbol
+  symbol:   method setPolicy(com.codeofduty.platform.model.Policy)
+  location: variable claim of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[89,18] cannot find symbol
+  symbol:   method getPayoutAmount()
+  location: variable claim of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[89,51] cannot find symbol
+  symbol:   method setPayoutAmount(double)
+  location: variable claim of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[91,14] cannot find symbol
+  symbol:   method setStatus(java.lang.String)
+  location: variable claim of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[97,59] cannot find symbol
+  symbol:   method getTriggerEvent()
+  location: variable claim of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[95,49] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.model.Notification
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[45,9] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.service.ParametricClaimService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[49,9] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.service.ParametricClaimService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[61,33] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[69,25] incompatible types: inference variable T has incompatible bounds
+    equality constraints: com.codeofduty.platform.model.Claim
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[74,13] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.service.ParametricClaimService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[77,53] cannot find symbol
+  symbol:   method builder()
+  location: class com.codeofduty.platform.model.Notification
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[83,13] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.service.ParametricClaimService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WebhookController.java:[27,9] cannot find symbol
+  symbol:   variable log
+  location: class com.codeofduty.platform.controller.WebhookController
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WebhookController.java:[29,24] cannot find symbol
+  symbol:   method getZone()
+  location: variable request of type com.codeofduty.platform.controller.WebhookController.TriggerRequest
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WebhookController.java:[30,24] cannot find symbol
+  symbol:   method getEventType()
+  location: variable request of type com.codeofduty.platform.controller.WebhookController.TriggerRequest
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WebhookController.java:[31,24] cannot find symbol
+  symbol:   method getSeverity()
+  location: variable request of type com.codeofduty.platform.controller.WebhookController.TriggerRequest
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WebhookController.java:[34,104] cannot find symbol
+  symbol:   method getZone()
+  location: variable request of type com.codeofduty.platform.controller.WebhookController.TriggerRequest
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NotificationController.java:[31,10] cannot find symbol
+  symbol:   method setIsRead(boolean)
+  location: variable n of type com.codeofduty.platform.model.Notification
+[INFO] 58 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.334 s
+[INFO] Finished at: 2026-03-31T00:11:36+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project platform: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[29,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.controller.NavigationController
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[40,34] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.dto.SmartRouteResponse
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[50,59] cannot find symbol
+[ERROR]   symbol:   method getCondition()
+[ERROR]   location: variable w of type com.codeofduty.platform.dto.WeatherPoint
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[50,96] cannot find symbol
+[ERROR]   symbol:   method getCondition()
+[ERROR]   location: variable w of type com.codeofduty.platform.dto.WeatherPoint
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[53,39] cannot find symbol
+[ERROR]   symbol:   method getTrafficDelaySeconds()
+[ERROR]   location: variable route of type com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[53,81] cannot find symbol
+[ERROR]   symbol:   method getTrafficDelaySeconds()
+[ERROR]   location: variable route of type com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[56,56] cannot find symbol
+[ERROR]   symbol:   method getTrafficDelaySeconds()
+[ERROR]   location: variable route of type com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[60,75] cannot find symbol
+[ERROR]   symbol:   method getTrafficDelaySeconds()
+[ERROR]   location: variable route of type com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NavigationController.java:[62,70] cannot find symbol
+[ERROR]   symbol:   method getTravelTimeSeconds()
+[ERROR]   location: variable route of type com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/LogisticsService.java:[52,38] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.dto.Coordinate
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/LogisticsService.java:[58,29] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.dto.RouteData
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/LogisticsService.java:[65,13] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.service.LogisticsService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/LogisticsService.java:[85,43] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.dto.WeatherPoint
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/LogisticsService.java:[93,13] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.service.LogisticsService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[28,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.service.DataBootstrap
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[32,57] cannot find symbol
+[ERROR]   symbol:   method getOperatingZone()
+[ERROR]   location: variable w of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[35,21] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.service.DataBootstrap
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[36,56] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[45,100] cannot find symbol
+[ERROR]   symbol:   method getOperatingZone()
+[ERROR]   location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[46,76] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[49,13] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.service.DataBootstrap
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[49,69] cannot find symbol
+[ERROR]   symbol:   method getFullName()
+[ERROR]   location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[50,41] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.model.Policy
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/DataBootstrap.java:[59,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.service.DataBootstrap
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[43,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.controller.WorkerController
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[43,53] cannot find symbol
+[ERROR]   symbol:   method getFullName()
+[ERROR]   location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[47,37] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.model.Policy
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[64,15] cannot find symbol
+[ERROR]   symbol:   method setUpiId(java.lang.String)
+[ERROR]   location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[74,57] cannot find symbol
+[ERROR]   symbol:   method setOperatingZone(java.lang.String)
+[ERROR]   location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WorkerController.java:[75,52] cannot find symbol
+[ERROR]   symbol:   method setPlatform(java.lang.String)
+[ERROR]   location: variable worker of type com.codeofduty.platform.model.Worker
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[44,49] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable c of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[45,36] cannot find symbol
+[ERROR]   symbol:   method getPayoutAmount()
+[ERROR]   location: variable c of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[45,66] cannot find symbol
+[ERROR]   symbol:   method getPayoutAmount()
+[ERROR]   location: variable c of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[50,16] constructor ClaimSummary in class com.codeofduty.platform.controller.ClaimController.ClaimSummary cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    double,int,com.codeofduty.platform.model.Claim
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[59,49] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable c of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[64,32] cannot find symbol
+[ERROR]   symbol:   method setStatus(java.lang.String)
+[ERROR]   location: variable c of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[70,62] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method getPayoutAmount(T)
+[ERROR]     location: class com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[68,49] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.model.Notification
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[84,25] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method getIsActive(T)
+[ERROR]     location: class com.codeofduty.platform.model.Policy
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[88,29] cannot find symbol
+[ERROR]   symbol:   method setPolicy(com.codeofduty.platform.model.Policy)
+[ERROR]   location: variable claim of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[89,18] cannot find symbol
+[ERROR]   symbol:   method getPayoutAmount()
+[ERROR]   location: variable claim of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[89,51] cannot find symbol
+[ERROR]   symbol:   method setPayoutAmount(double)
+[ERROR]   location: variable claim of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[91,14] cannot find symbol
+[ERROR]   symbol:   method setStatus(java.lang.String)
+[ERROR]   location: variable claim of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[97,59] cannot find symbol
+[ERROR]   symbol:   method getTriggerEvent()
+[ERROR]   location: variable claim of type com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/ClaimController.java:[95,49] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.model.Notification
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[45,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.service.ParametricClaimService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[49,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.service.ParametricClaimService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[61,33] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.model.Claim
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[69,25] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.codeofduty.platform.model.Claim
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[74,13] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.service.ParametricClaimService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[77,53] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.codeofduty.platform.model.Notification
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/service/ParametricClaimService.java:[83,13] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.service.ParametricClaimService
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WebhookController.java:[27,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.codeofduty.platform.controller.WebhookController
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WebhookController.java:[29,24] cannot find symbol
+[ERROR]   symbol:   method getZone()
+[ERROR]   location: variable request of type com.codeofduty.platform.controller.WebhookController.TriggerRequest
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WebhookController.java:[30,24] cannot find symbol
+[ERROR]   symbol:   method getEventType()
+[ERROR]   location: variable request of type com.codeofduty.platform.controller.WebhookController.TriggerRequest
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WebhookController.java:[31,24] cannot find symbol
+[ERROR]   symbol:   method getSeverity()
+[ERROR]   location: variable request of type com.codeofduty.platform.controller.WebhookController.TriggerRequest
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/WebhookController.java:[34,104] cannot find symbol
+[ERROR]   symbol:   method getZone()
+[ERROR]   location: variable request of type com.codeofduty.platform.controller.WebhookController.TriggerRequest
+[ERROR] /C:/Users/vaish/Desktop/CodeofDuty-DevTrails/backend/src/main/java/com/codeofduty/platform/controller/NotificationController.java:[31,10] cannot find symbol
+[ERROR]   symbol:   method setIsRead(boolean)
+[ERROR]   location: variable n of type com.codeofduty.platform.model.Notification
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

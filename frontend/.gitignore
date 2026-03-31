@@ -1,4 +1,26 @@
-# Logs
+# ==========================================
+# Enhanced .gitignore for modern projects
+# ==========================================
+
+# 📦 Dependencies
+node_modules/
+jspm_packages/
+.pnp
+.pnp.js
+.pnp.cjs
+
+# 🚀 Build Outputs & Generated Files
+dist/
+dist-ssr/
+build/
+out/
+.next/
+.nuxt/
+.vuepress/dist/
+.serverless/
+*.tsbuildinfo
+
+# 📝 Logs
 logs
 *.log
 npm-debug.log*
@@ -7,16 +29,47 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# 🔐 Environment Variables (CRITICAL FOR SECURITY)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
 
-# Editor directories and files
+# 🧪 Testing & Coverage
+coverage/
+.nyc_output/
+cypress/videos/
+cypress/screenshots/
+
+# 🗄️ Caches & Local Temp Files
+*.local
+.npm/
+.eslintcache
+.stylelintcache
+.prettiercache
+.parcel-cache/
+.vite_cache/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# 💻 OS-Specific Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ⚙️ Editor Directories and Files
+.idea/
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+!.vscode/settings.json
 *.suo
 *.ntvs*
 *.njsproj

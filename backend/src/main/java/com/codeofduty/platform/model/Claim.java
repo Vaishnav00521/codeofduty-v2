@@ -51,6 +51,12 @@ public class Claim {
     private String description;
 
     /**
+     * Supporting media URL or text proof submitted by driver.
+     */
+    @Column(columnDefinition = "TEXT")
+    private String evidence;
+
+    /**
      * Status of the claim (APPROVED, PENDING, PAID).
      */
     @Builder.Default

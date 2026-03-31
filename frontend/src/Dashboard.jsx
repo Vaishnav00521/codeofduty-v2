@@ -1,258 +1,170 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Shield, 
-  Bell, 
-  Settings as SettingsIcon, 
-  Landmark, 
-  Map as MapIcon,
-  ChevronRight,
-  Activity,
-  MapPin,
-  RefreshCcw,
-  X,
-  CreditCard,
-  CheckCircle2,
-  AlertCircle
-} from 'lucide-react';
+import { Shield, Bell, Settings, MapPin, RefreshCw, Landmark, Activity, ActivitySquare, ShieldAlert, Zap, CheckCircle2 } from 'lucide-react';
 
 export default function Dashboard() {
-  const [summary, setSummary] = useState({ totalPayout: 0.0, claimCount: 0, latestClaim: null });
-  const [worker, setWorker] = useState(null);
-  const [notifications, setNotifications] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [activeOverlay, setActiveOverlay] = useState(null); // 'notifications', 'settings', 'payments'
+  const [triggerState, setTriggerState] = useState(0); 
+  const [balRollup, setBalRollup] = useState(0);
+  const [receipt, setReceipt] = useState(null);
 
-  const fetchDashboardData = async () => {
-    try {
-      const [sResp, wResp, nResp] = await Promise.all([
-        fetch('http://localhost:8080/api/claims/summary').then(r => r.json()),
-        fetch('http://localhost:8080/api/workers/summary').then(r => r.json()),
-        fetch('http://localhost:8080/api/notifications').then(r => r.json())
-      ]);
-      
-      setSummary(sResp);
-      setWorker(wResp);
-      setNotifications(nResp);
-    } catch (err) {
-      console.error("Dashboard Sync Failed:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // Initial Sync
   useEffect(() => {
-    fetchDashboardData();
+    fetch('http://localhost:8080/api/claims/summary')
+      .then(r => r.json())
+      .then(d => setBalRollup(d.totalPayout || 0))
+      .catch(err => console.error("Initial load fail", err));
   }, []);
 
-  const renderOverlay = () => {
-    switch(activeOverlay) {
-      case 'notifications': return <NotificationsOverlay notifications={notifications} onClose={() => setActiveOverlay(null)} />;
-      case 'settings': return <SettingsOverlay worker={worker} onClose={() => setActiveOverlay(null)} onUpdate={fetchDashboardData} />;
-      case 'payments': return <PaymentsOverlay worker={worker} onClose={() => setActiveOverlay(null)} onUpdate={fetchDashboardData} />;
-      default: return null;
+  const handleTrigger = async () => {
+    if (triggerState > 0) return;
+    setTriggerState(1);
+
+    try {
+      // Connect specifically to the backend parametric API you asked for
+      const res = await fetch('http://localhost:8080/api/claims/trigger', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ zone: "Vadodara", platform: "Zepto" })
+      });
+      const data = await res.json();
+      setReceipt(data);
+
+      setTimeout(() => {
+        setTriggerState(2);
+      }, 1500);
+
+      setTimeout(() => {
+        setTriggerState(3);
+        
+        let current = balRollup;
+        const target = balRollup + (data.payoutAmount || 5230);
+        const interval = setInterval(() => {
+          current += Math.ceil((target - current) / 4) || 1;
+          setBalRollup(current);
+          if (current >= target) {
+            setBalRollup(target);
+            clearInterval(interval);
+          }
+        }, 50);
+      }, 3000);
+
+    } catch (e) {
+      console.error(e);
+      setTriggerState(0);
     }
   };
 
   return (
-    <div className="h-full flex-1 bg-[#141414] font-sans text-white flex flex-col relative overflow-hidden">
-      
-      {/* Top Header Section */}
-      <motion.header 
-        className="px-6 py-5 flex justify-between items-center bg-[#1c1c1c] border-b border-white/5"
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-      >
+    <div className="px-5 pt-8 text-white relative h-full w-full">
+      {/* Top Header */}
+      <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-3">
-          <div className="bg-blue-600 p-2 rounded-full shadow-lg">
-            <Shield className="w-5 h-5 text-white fill-white" />
-          </div>
-          <div>
-            <h1 className="text-lg font-bold tracking-tight text-white leading-tight">RiderShield</h1>
-            <p className="text-[10px] text-gray-400 font-medium">Welcome, {worker?.fullName || 'Rider'}</p>
-          </div>
+           <div className="bg-blue-500/20 p-2 rounded-xl border border-blue-500/30">
+             <Shield className="w-6 h-6 text-blue-400" />
+           </div>
+           <div>
+             <h1 className="text-xl font-black text-white tracking-tight uppercase">CodeofDuty</h1>
+             <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest leading-none mt-1">Welcome, Rider</p>
+           </div>
         </div>
-        <div className="flex items-center gap-4 text-gray-400">
-          <div className="relative cursor-pointer hover:text-white transition-colors" onClick={() => setActiveOverlay('notifications')}>
-             <Bell className="w-5 h-5" />
-             {notifications.some(n => !n.isRead) && (
-               <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-red-500 rounded-full border-2 border-[#1c1c1c]" />
-             )}
-          </div>
-          <SettingsIcon 
-            className="w-5 h-5 cursor-pointer hover:text-white transition-colors" 
-            onClick={() => setActiveOverlay('settings')}
-          />
+        <div className="flex gap-4">
+           <Bell className="w-5 h-5 text-gray-400 cursor-pointer hover:text-white transition-colors" />
+           <Settings className="w-5 h-5 text-gray-400 cursor-pointer hover:text-white transition-colors" />
         </div>
-      </motion.header>
-      
-      {/* Location Selector */}
-      <motion.div className="px-6 py-3 flex items-center gap-2 bg-[#181818] border-b border-white/5">
-        <MapPin className="w-4 h-4 text-blue-500" />
-        <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">{worker?.operatingZone || 'Scanning...'}</span>
-        <div className="flex-1" />
-        <RefreshCcw className="w-3.5 h-3.5 text-gray-600 hover:text-white cursor-pointer" onClick={fetchDashboardData} />
-      </motion.div>
-
-      <div className="flex-1 overflow-y-auto px-5 py-6 pb-24 no-scrollbar">
-        {/* Instant Payout Balance Card */}
-        <div className="bg-[#242424] rounded-[2rem] p-6 shadow-xl border border-white/5 mb-8">
-            <div className="flex justify-between items-start mb-6">
-              <div>
-                <p className="text-gray-400 text-sm font-medium mb-1">Instant Payout Balance</p>
-                <h2 className="text-3xl font-extrabold text-white tracking-tight">₹{(summary?.totalPayout ?? 0).toFixed(2)}</h2>
-              </div>
-              <div className="text-right">
-                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Primary Method</p>
-                <div className="flex items-center gap-3 bg-[#1c1c1c] p-2 pr-4 rounded-full border border-white/10">
-                  <div className="bg-white/10 p-2 rounded-full">
-                    <Landmark className="w-4 h-4 text-gray-300" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[10px] font-bold text-white leading-tight">UPI ID</p>
-                    <p className="text-[10px] text-gray-500 font-medium">{worker?.upiId || 'Not linked'}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex gap-3 mt-6">
-              <button 
-                disabled={loading || (summary?.totalPayout ?? 0) === 0}
-                onClick={async () => {
-                  setLoading(true);
-                  await fetch('http://localhost:8080/api/claims/withdraw', { method: 'POST' });
-                  fetchDashboardData();
-                  setLoading(false);
-                }}
-                className={`flex-1 font-bold py-3.5 rounded-2xl text-sm transition-all shadow-lg active:scale-95 ${(summary?.totalPayout ?? 0) > 0 ? "bg-blue-600 text-white" : "bg-gray-800 text-gray-500"}`}
-              >
-                {loading ? "Processing..." : "One-Tap Withdraw"}
-              </button>
-              <button 
-                onClick={() => setActiveOverlay('payments')}
-                className="flex-1 bg-white text-black font-bold py-3.5 rounded-2xl text-sm transition-all shadow-lg active:scale-95"
-              >
-                Manage Methods
-              </button>
-            </div>
-        </div>
-
-        {/* Auto-detected Claims */}
-        <h3 className="text-lg font-bold text-white tracking-tight mb-5 px-1">Auto-detected Claims</h3>
-        {summary.latestClaim ? (
-          <div className="w-full bg-[#242424] rounded-[2rem] p-6 border border-white/5 relative overflow-hidden group">
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h4 className="text-lg font-bold text-white mb-1">Incident: {summary.latestClaim?.triggerEvent}</h4>
-                <p className="text-[10px] text-gray-500 font-medium uppercase tracking-widest">ID: {summary.latestClaim?.id?.substring(0,8)}</p>
-              </div>
-              <div className="bg-amber-400 px-3 py-1 rounded-full"><span className="text-[10px] font-extrabold text-black uppercase tracking-wider">{summary.latestClaim.status}</span></div>
-            </div>
-          </div>
-        ) : (
-          <div className="text-center py-10 opacity-50"><Activity className="w-10 h-10 mx-auto mb-3 text-gray-600" /><p className="text-sm font-bold">No active incidents detected.</p></div>
-        )}
       </div>
 
-      <AnimatePresence>
-        {activeOverlay && (
-          <motion.div className="absolute inset-0 z-[100] bg-black/60 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setActiveOverlay(null)}>
-             <motion.div className="absolute bottom-0 left-0 w-full bg-[#1c1c1c] rounded-t-[3rem] p-8 pb-12 shadow-2xl" initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }} onClick={e => e.stopPropagation()}>
-                <div className="w-12 h-1.5 bg-white/10 rounded-full mx-auto mb-8" />
-                {renderOverlay()}
-             </motion.div>
+      {/* Telemetry Bar */}
+      <div className={`flex items-center justify-between px-4 py-3 rounded-xl border mb-6 transition-all duration-300 ${triggerState >= 1 ? 'bg-red-500/10 border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.2)]' : 'bg-white/5 border-white/10'}`}>
+         <div className="flex items-center gap-2">
+            <MapPin className={`w-4 h-4 ${triggerState >= 1 ? 'text-red-400' : 'text-cyan-400'}`} />
+            <span className={`text-[10px] font-bold uppercase tracking-widest ${triggerState >= 1 ? 'text-amber-400 animate-pulse' : 'text-cyan-400/50'}`}>
+              {triggerState >= 1 ? 'WEATHER THRESHOLD BREACHED (>30mm/hr)' : 'SCANNING VADODARA...'}
+            </span>
+         </div>
+         <RefreshCw className={`w-4 h-4 cursor-pointer hover:rotate-180 transition-transform ${triggerState >= 1 ? 'text-red-400' : 'text-cyan-400'}`} />
+      </div>
+
+      {/* Payout Card */}
+      <div className="bg-slate-900/50 border border-blue-500/20 rounded-3xl p-6 mb-8 relative overflow-hidden group shadow-lg">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
+        
+        <div className="flex justify-between items-start mb-6 border-b border-white/10 pb-5">
+           <div>
+             <p className="text-[10px] text-blue-300/80 font-bold uppercase tracking-widest mb-1.5">Instant Payout Balance</p>
+             <motion.h2 className={`text-4xl font-black tracking-tight ${triggerState === 3 ? 'text-blue-400' : 'text-white'}`}>
+               ₹{balRollup.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+             </motion.h2>
+           </div>
+           <div className="text-right">
+             <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">Primary Method</p>
+             <div className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-md border border-emerald-500/20">
+               <Landmark className="w-3 h-3" /> UPI ID (Linked)
+             </div>
+           </div>
+        </div>
+        
+        <div className="flex gap-3 relative z-10">
+           <button className={`flex-1 py-3.5 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all duration-500 ${triggerState === 3 ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'bg-slate-800/80 text-slate-500 border border-slate-700/50 cursor-not-allowed'}`}>
+             One-Tap Withdraw
+           </button>
+           <button className="flex-1 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-[11px] font-bold uppercase tracking-wider text-white transition-all">
+             Manage Methods
+           </button>
+        </div>
+      </div>
+
+      {/* Trigger & Claims */}
+      <h3 className="text-sm font-bold text-white mb-4 flex items-center gap-2 drop-shadow-md">
+        <Activity className="w-4 h-4 text-cyan-400" /> Auto-detected Claims
+      </h3>
+      
+      <AnimatePresence mode="wait">
+        {triggerState < 2 ? (
+          <motion.div key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-2xl mb-8 border-dashed">
+            <div className="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50"><ActivitySquare className="w-5 h-5 text-gray-500" /></div>
+            <p className="text-xs font-bold uppercase tracking-widest text-slate-500">No active incidents detected.</p>
+          </motion.div>
+        ) : (
+          <motion.div key="alert" initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} className="flex items-center gap-4 p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl mb-8 shadow-[0_0_20px_rgba(245,158,11,0.15)] relative overflow-hidden backdrop-blur-sm">
+            <div className="absolute top-0 right-0 w-16 h-16 bg-amber-500/20 rounded-full blur-xl" />
+            <div className="bg-amber-500/20 p-2.5 rounded-xl border border-amber-500/30">
+              <ShieldAlert className="w-5 h-5 text-amber-400" />
+            </div>
+            <div className="relative z-10">
+              <p className="text-[10px] font-black text-amber-400 uppercase tracking-widest drop-shadow-md">Zepto Operations Halted</p>
+              <p className="text-sm font-bold text-white mt-0.5">{receipt?.hoursLost || 4} Hours Lost</p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
-  );
-}
 
-function NotificationsOverlay({ notifications, onClose }) {
-  return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Activity Center</h2>
-        <X className="w-6 h-6 text-gray-500 cursor-pointer" onClick={onClose} />
-      </div>
-      <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
-        {notifications.length > 0 ? notifications.map(n => (
-          <div key={n.id} className="bg-white/5 p-4 rounded-2xl border border-white/5">
-            <p className="text-sm font-bold text-blue-400 mb-1">{n.title}</p>
-            <p className="text-xs text-gray-400 leading-relaxed">{n.message}</p>
-            <p className="text-[10px] text-gray-600 mt-2">{new Date(n.timestamp).toLocaleTimeString()}</p>
-          </div>
-        )) : <p className="text-center text-gray-500 py-10">No recent notifications</p>}
-      </div>
-    </div>
-  );
-}
+      <button 
+        onClick={handleTrigger}
+        disabled={triggerState > 0}
+        className={`w-full py-5 rounded-2xl font-black text-[13px] uppercase tracking-widest flex items-center justify-center gap-2.5 transition-all duration-300 ${triggerState === 0 ? 'bg-red-600 text-white border border-red-400/50 hover:bg-red-500 shadow-[0_0_30px_rgba(220,38,38,0.4)] hover:-translate-y-1 active:scale-[0.98]' : triggerState === 1 || triggerState === 2 ? 'bg-red-900 border border-red-500/30 text-red-300 animate-pulse' : 'bg-slate-800/50 text-slate-600 border border-slate-700/50 cursor-not-allowed shadow-none'}`}
+      >
+         <Zap className={`w-5 h-5 ${triggerState === 0 ? 'fill-current' : ''}`} /> 
+         {triggerState === 0 ? 'TRIGGER SEVERE RAINSTORM (LIVE API)' : triggerState >= 3 ? 'SIMULATION COMPLETE' : 'PROCESSING WEATHER DATA...'}
+      </button>
 
-function SettingsOverlay({ worker, onClose, onUpdate }) {
-  const [zone, setZone] = useState(worker?.operatingZone || '');
-  const [platform, setPlatform] = useState(worker?.platform || '');
+      <AnimatePresence>
+        {triggerState === 3 && (
+          <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} className="mt-8 bg-emerald-950/80 border border-emerald-500/50 rounded-2xl p-4 shadow-[0_0_40px_rgba(16,185,129,0.3)] backdrop-blur-xl relative overflow-hidden z-20">
+             <div className="absolute -right-10 -top-10 w-24 h-24 bg-emerald-500/20 blur-2xl rounded-full" />
+             <div className="flex items-center gap-3 mb-2 relative z-10">
+                <div className="p-2 bg-emerald-500/20 rounded-full border border-emerald-500/30">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-[9px] uppercase font-bold text-emerald-300 tracking-wider">Razorpay Success Receipt</p>
+                  <p className="text-[13px] font-bold text-emerald-50">₹{(receipt?.payoutAmount || 5230).toFixed(2)} transferred</p>
+                </div>
+             </div>
+             <p className="text-[8px] text-emerald-500/60 font-mono tracking-widest mt-2">HASH: {receipt?.transactionId || 'rzp_sim_1234'}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-  const handleUpdate = async () => {
-    await fetch(`http://localhost:8080/api/workers/${worker.id}/settings`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ operatingZone: zone, platform: platform })
-    });
-    onUpdate();
-    onClose();
-  };
-
-  return (
-    <div>
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold">Rider Settings</h2>
-        <X className="w-6 h-6 text-gray-500 cursor-pointer" onClick={onClose} />
-      </div>
-      <div className="space-y-6">
-        <div>
-          <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-2">Operating Zone</label>
-          <input className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white outline-none" value={zone} onChange={e => setZone(e.target.value)} />
-        </div>
-        <div>
-          <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-2">Delivery Platform</label>
-          <input className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white outline-none" value={platform} onChange={e => setPlatform(e.target.value)} />
-        </div>
-        <button onClick={handleUpdate} className="w-full bg-blue-600 text-white font-bold py-4 rounded-2xl shadow-xl shadow-blue-600/20">Update Profile</button>
-      </div>
-    </div>
-  );
-}
-
-function PaymentsOverlay({ worker, onClose, onUpdate }) {
-  const [upi, setUpi] = useState(worker?.upiId || '');
-
-  const handleUpdate = async () => {
-    await fetch(`http://localhost:8080/api/workers/${worker.id}/payment`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ upiId: upi })
-    });
-    onUpdate();
-    onClose();
-  };
-
-  return (
-    <div>
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold">Payout Methods</h2>
-        <X className="w-6 h-6 text-gray-500 cursor-pointer" onClick={onClose} />
-      </div>
-      <div className="bg-blue-600/10 border border-blue-500/20 rounded-2xl p-4 mb-6 flex items-start gap-4 text-sm text-blue-100">
-         <Shield className="w-5 h-5 text-blue-400 mt-1" /><p>Instant payouts are verified by Stripe & UPI for fraud prevention.</p>
-      </div>
-      <div className="space-y-6">
-        <div>
-          <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-2">Primary UPI ID</label>
-          <input className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white outline-none focus:border-blue-500" value={upi} onChange={e => setUpi(e.target.value)} placeholder="name@upi" />
-        </div>
-        <button onClick={handleUpdate} className="w-full bg-white text-black font-bold py-4 rounded-2xl shadow-xl">Save Payment Method</button>
-      </div>
     </div>
   );
 }

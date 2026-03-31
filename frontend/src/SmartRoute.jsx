@@ -165,10 +165,18 @@ export default function SmartRoute() {
     ? Math.round((currentPositionIdx / (polylineCoords.length - 1)) * 100)
     : 0;
 
+  // ── Dynamic Route Hazard Analysis ─────────────────────────────────────
+  const hasRainAlert = routeData?.weatherAlerts?.some(w => w.condition?.includes('Rain'));
+  const isHighRisk = trafficDelay > 300 || hasRainAlert;
+  const isElevatedRisk = trafficDelay > 60 && !isHighRisk;
+  
+  const routeColor = isHighRisk ? '#ef4444' : isElevatedRisk ? '#f59e0b' : '#3b82f6';
+  const pulseClass = isHighRisk ? 'animate-pulse' : '';
+
   // ── Loading state ────────────────────────────────────────────────────────
   if (loading) {
     return (
-      <div className="h-full flex flex-col items-center justify-center bg-[#0a0a0a] text-white gap-5">
+      <div className="h-full flex flex-col items-center justify-center bg-transparent text-white gap-5">
         <div className="relative">
           <Satellite className="w-14 h-14 text-blue-500 animate-pulse" />
           <Radio className="w-5 h-5 text-emerald-400 absolute -top-1 -right-1 animate-bounce" />
@@ -184,10 +192,10 @@ export default function SmartRoute() {
   }
 
   return (
-    <div className="h-full flex flex-col bg-[#0a0a0a] font-sans text-white relative overflow-hidden">
+    <div className="h-full flex flex-col bg-transparent font-sans text-white relative p-4 pb-0 overflow-hidden">
 
       {/* ── Map (takes all available height above the bento box) ─────────── */}
-      <div className="flex-1 relative">
+      <div className="flex-1 relative rounded-t-3xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(6,182,212,0.15)]">
         <MapContainer
           center={[start.lat, start.lon]}
           zoom={14}
@@ -208,11 +216,19 @@ export default function SmartRoute() {
             opacity={0.7}
           />
 
-          {/* Remaining route polyline — glowing neon blue */}
+          {/* Remaining route polyline — glowing dynamic color */}
           {remainingRoute.length > 1 && (
             <Polyline
+              className={pulseClass}
               positions={remainingRoute}
-              pathOptions={{ color: '#3b82f6', weight: 5, opacity: 0.9, lineJoin: 'round', lineCap: 'round' }}
+              pathOptions={{ 
+                 color: routeColor, 
+                 weight: isHighRisk ? 7 : 5, 
+                 opacity: 0.9, 
+                 lineJoin: 'round', 
+                 lineCap: 'round',
+                 dashArray: isHighRisk ? '10 10' : undefined
+              }}
             />
           )}
 
@@ -284,7 +300,7 @@ export default function SmartRoute() {
       </div>
 
       {/* ── Smart Bento Box ────────────────────────────────────────────────── */}
-      <div className="px-4 py-4 bg-black/40 backdrop-blur-xl border-t border-white/10 flex-shrink-0">
+      <div className="px-4 py-4 pb-8 backdrop-blur-xl bg-slate-900/60 border border-white/10 rounded-b-3xl flex-shrink-0 mb-4 z-20">
 
         {/* Stats Row */}
         <div className="grid grid-cols-3 gap-3 mb-3">
