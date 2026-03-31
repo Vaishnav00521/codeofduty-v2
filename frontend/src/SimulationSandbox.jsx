@@ -4,7 +4,7 @@ import { ShieldAlert, Zap, RefreshCw, Landmark, Activity, ActivitySquare, AlertT
 
 export default function SimulationSandbox() {
     // 1. Add the dynamic URL variable at the top of the component
-    const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+    const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
 
     // Admin State
     const [triggerType, setTriggerType] = useState('Heavy Rainfall');

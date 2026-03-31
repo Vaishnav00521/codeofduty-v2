@@ -7,7 +7,7 @@ export default function Dashboard() {
   const [balRollup, setBalRollup] = useState(0);
   const [receipt, setReceipt] = useState(null);
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
 
   // Initial Sync
   useEffect(() => {

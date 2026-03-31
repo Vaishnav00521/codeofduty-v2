@@ -3,25 +3,27 @@ import { motion } from 'framer-motion';
 import { User, Briefcase, MapPin, Zap, RefreshCw, Hexagon } from 'lucide-react';
 
 export default function Onboarding({ onComplete }) {
+  // 1. Dynamic URL variable defined at the top
+  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
+
   const [formData, setFormData] = useState({
     fullName: "Rahul Kumar",
     platform: "Zepto",
     operatingZone: "Vadodara, GJ"
   });
-  // 1. Make sure this is at the top of your component
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
   const [loading, setLoading] = useState(false);
 
   const handleInitialize = async () => {
     setLoading(true);
     try {
-      // 2. Swapped the hardcoded string for backticks and the dynamic variable
+      // 2. Fetch call using the dynamic URL and backticks
       const response = await fetch(`${API_BASE_URL}/api/workers/onboard`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
+
       if (response.ok) {
         onComplete();
       }
@@ -32,6 +34,8 @@ export default function Onboarding({ onComplete }) {
       setLoading(false);
     }
   };
+
+  // ... (keep the rest of your component's return statement the same)
 
   const containerVariants = {
     hidden: { opacity: 0 },

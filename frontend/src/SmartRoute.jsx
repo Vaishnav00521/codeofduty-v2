@@ -104,7 +104,7 @@ function WeatherIcon({ condition, size = 16 }) {
 
 export default function SmartRoute() {
   // 1. Add the dynamic URL variable at the top of your component
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
 
   const [routeData, setRouteData] = useState(null);
   const [loading, setLoading] = useState(true);

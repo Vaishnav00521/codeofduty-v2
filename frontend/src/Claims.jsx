@@ -31,7 +31,7 @@ export default function Claims() {
   });
 
   // 1. Define the dynamic base URL at the top level of your component
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
 
   const fetchClaims = async () => {
     try {

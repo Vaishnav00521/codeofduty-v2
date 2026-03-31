@@ -4,7 +4,7 @@ import { PlayCircle, ShieldAlert, CloudLightning, Banknote, HelpCircle, Loader2 
 
 export default function ClaimSimulator() {
   // 1. Moved to the top level of the component
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);

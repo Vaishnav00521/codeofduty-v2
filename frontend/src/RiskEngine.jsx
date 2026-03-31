@@ -4,7 +4,7 @@ import { BrainCircuit, TrendingUp, CloudRain, ShieldCheck, AlertOctagon, Map, Re
 
 export default function RiskEngine() {
   // 1. Add the dynamic URL variable here inside your component
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
 
   const [riskData, setRiskData] = useState(null);
   const [loading, setLoading] = useState(true);
