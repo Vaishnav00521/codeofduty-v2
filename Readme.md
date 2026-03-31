@@ -1,13 +1,15 @@
 <div align="center">
   <h1>🚀 CodeofDuty: Parametric Income Protection for Q-Commerce Workers</h1>
-  <p><b>Guidewire DEVTrails 2026: Unicorn Chase — Phase 1 Submission</b></p>
+  <p><b>Guidewire DEVTrails 2026: Unicorn Chase — Phase 2 Final Submission</b></p>
 
-  <!-- Badges -->
+  <p>🔗 <b>Live Demo:</b> <a href="https://codeofduty-devtrailshack.vercel.app">codeofduty-devtrailshack.vercel.app</a></p>
+
   ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
   ![Azure](https://img.shields.io/badge/Azure-Cloud_Platform-0089D6?logo=microsoft-azure)
   ![Java 17](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk)
   ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?logo=spring)
-  ![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react)
+  ![React + Vite](https://img.shields.io/badge/React_Vite-18.x-61DAFB?logo=react)
+  ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css)
   ![Python](https://img.shields.io/badge/Python-ML_Engine-3776AB?logo=python)
 </div>
 
@@ -32,6 +34,18 @@ Rahul relies on completing 20-30 orders a day to support his family. When a sudd
 
 ---
 
+## 🚀 Phase 2 Highlights: What We Built
+
+For Phase 2, CodeofDuty transitioned from a conceptual architecture to a **fully functional, live-simulated InsurTech ecosystem**.
+
+- 🌗 **Split-Screen Reality UI:** A high-fidelity, dual-view interface. On the left, the "Admin Simulator" injects live environmental data. On the right, the exact mobile app interface (RiderShield) that the delivery partner sees in their pocket, updating in real-time.
+- 🌪️ **Multi-Variate Trigger Hub:** Expanded beyond just weather. The engine now actively simulates and processes parameters for **Heavy Rainfall (>30mm)**, **Extreme Heat (>42°C)**, **AQI Hazards (>300)**, and **Traffic Gridlock (<5km/h)** mapped to the Vadodara city zone.
+- 🛡️ **GPS Fraud Guardian:** Implemented active telemetry validation. If a claim is triggered but the rider's phone pings outside the verified "Impact Zone," the system instantly blocks the payout, proving enterprise-grade security.
+- 📊 **Actuarial Risk Pool Visualizer:** A live financial dashboard that dynamically deducts payouts from the global risk pool and recalculates the following week's premium to ensure business sustainability.
+- 🌌 **Future Tech Aesthetic:** Rebuilt the entire frontend using a stunning "Neurolink" live-wallpaper aesthetic, featuring glassmorphism layering, glowing holographic radar rings, and dynamic data-node tracking.
+
+---
+
 ## 🔥 Core Capabilities
 
 | Capability | Description |
@@ -46,7 +60,7 @@ Rahul relies on completing 20-30 orders a day to support his family. When a sudd
 
 Our architecture guarantees a seamless flow from event detection to simulated instant payout without manual intervention.
 
-1. **Environmental/Social Event Occurs**: Severe waterlogging or a major protest disrupts specific city zones.
+1. **Environmental/Social Event Occurs**: Severe waterlogging or a major protest disrupts specific city zones (e.g., Vadodara).
 2. **Real-Time Polling**: An **Azure Function** continuously polls the **OpenWeatherMap API** (environmental triggers) and **TomTom Traffic API / Groq NLP** (social disruption models).
 3. **Threshold Breach Evaluation**: The system detects that the disruption index exceeds the parametric contract limits for the affected geofence.
 4. **Trigger Generation**: The Azure Function signals the core **Spring Boot Backend** via real-time webhooks.
@@ -59,11 +73,13 @@ Our architecture guarantees a seamless flow from event detection to simulated in
 Our platform is engineered for high availability, low latency, and infinite scalability, leveraging a modern cloud-native stack.
 
 ### 🌐 Frontend & Mobile Access
-- **React.js & Tailwind CSS**: Powers the responsive Insurtech Admin Dashboard for underwriters and risk managers.
-- **React Native**: Delivers a lightweight, performant Mobile Worker App for our delivery partners.
+- **React.js & Vite**: Provides lightning-fast HMR and an optimized build process for our frontend dashboard.
+- **Tailwind CSS**: Powers the responsive Insurtech UI, utilizing advanced glassmorphism and animated backgrounds.
+- **React Native (Simulated via Mobile Web Container)**: Delivers a lightweight, performant Mobile Worker App (`RiderShield`) for our delivery partners.
 
 ### 🧠 Backend Core
-- **Java 17 & Spring Boot**: The robust, enterprise-ready engine driving our core business logic and transaction management.
+- **Java 17 & Spring Boot**: The robust, enterprise-ready engine driving our core business logic, threshold evaluation, and transaction management.
+- **Maven**: Handles dependency management and build automation.
 - **Spring Security**: Secures all REST APIs with JWT-based authentication.
 - **Hibernate ORM**: Manages seamless, structured interactions with our relational data layer.
 
@@ -72,23 +88,21 @@ Our platform is engineered for high availability, low latency, and infinite scal
 - **Azure Functions**: Serverless event-driven architecture polling real-time APIs for parametric triggers constraint-free.
 - **Azure SQL**: A secure, fully managed relational database storing policies, worker profiles, and trigger logs.
 
-### 🤖 AI / ML Engine
-- **Python & Scikit-Learn**: Drives our Predictive Dynamic Weekly Pricing models based on historical weather and traffic anomaly data.
-- **Groq API / NLP**: Powers real-time social disruption analysis and intelligent fraud detection.
-
-### 🔌 Third-Party Integrations
-- **OpenWeatherMap API**: Provides granular, real-time climate telemetry.
-- **TomTom Traffic API**: Delivers real-time congestion and roadblock intelligence.
-- **Razorpay (Test Mode)**: Facilitates simulated, instant bulk payouts direct to worker wallets.
+### 🤖 AI / ML Engine & Third-Party APIs
+- **Python & Scikit-Learn**: Drives our Predictive Dynamic Weekly Pricing models.
+- **Groq API / NLP**: Powers real-time social disruption analysis.
+- **OpenWeatherMap & TomTom APIs**: Provides granular, real-time climate and traffic telemetry.
 
 ---
 
-## ✅ Phase 1 Deliverables
+## ✅ Deliverables Roadmap
 
-- [x] **Idea Document Completed**: Fully fleshed out startup proposal, financial model, and risk assessment.
-- [x] **Workflow Architecture Defined**: End-to-end mapping of parametric triggers to financial disbursements.
-- [x] **Minimal Prototype Developed**: Includes Core Backend APIs, Azure Trigger Integrations, and Admin Dashboard UI.
-- [x] **API Connections Established**: Live connections to TomTom and OpenWeatherMap APIs.
+- [x] **Phase 1:** Idea Document Completed (Financial model & risk assessment).
+- [x] **Phase 1:** Workflow Architecture Defined.
+- [x] **Phase 2:** Live Spring Boot REST API deployed and routing claims.
+- [x] **Phase 2:** Multi-Variate Parametric Service established.
+- [x] **Phase 2:** Fraud Guardian (GPS Telemetry) logic implemented.
+- [x] **Phase 2:** High-fidelity, split-screen React frontend built and deployed to Vercel.
 
 ---
 
@@ -97,17 +111,16 @@ Our platform is engineered for high availability, low latency, and infinite scal
 Get the **CodeofDuty** platform running on your local machine in minutes.
 
 ### Prerequisites
-- Node.js (v18+)
 - Java 17 (JDK)
-- Maven
+- Maven (v3.8+)
+- Node.js (v18+) & npm
 - Python 3.10+
 - Microsoft Azure CLI
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/CodeofDuty-Startup/unicorn-chase-phase1.git
-cd unicorn-chase-phase1
-```
+git clone [https://github.com/yourusername/codeofduty-v2.git](https://github.com/yourusername/codeofduty-v2.git)
+cd codeofduty-v2
 
 ### 2️⃣ Run the Insurtech Admin Dashboard (Frontend)
 ```bash
