@@ -2,8 +2,6 @@
   <h1>🚀 CodeofDuty: Parametric Income Protection for Q-Commerce Workers</h1>
   <p><b>Guidewire DEVTrails 2026: Unicorn Chase — Phase 2 Final Submission</b></p>
 
-  <p>🔗 <b>Live Demo:</b> <a href="https://codeofduty-devtrailshack.vercel.app">codeofduty-devtrailshack.vercel.app</a></p>
-
   ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
   ![Azure](https://img.shields.io/badge/Azure-Cloud_Platform-0089D6?logo=microsoft-azure)
   ![Java 17](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk)
