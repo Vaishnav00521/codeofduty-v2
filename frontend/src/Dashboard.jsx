@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import api from './api';
 import { Shield, Bell, Settings, MapPin, RefreshCw, Landmark, Activity, ActivitySquare, ShieldAlert, Zap, CheckCircle2 } from 'lucide-react';
 
 export default function Dashboard() {
@@ -7,12 +8,9 @@ export default function Dashboard() {
   const [balRollup, setBalRollup] = useState(0);
   const [receipt, setReceipt] = useState(null);
 
-  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
-
   // Initial Sync
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/claims/summary`)
-      .then(r => r.json())
+    api.get('/api/claims/summary')
       .then(d => setBalRollup(d.totalPayout || 0))
       .catch(err => console.error("Initial load fail", err));
   }, []);
@@ -22,12 +20,7 @@ export default function Dashboard() {
     setTriggerState(1);
 
     try {
-      const res = await fetch(`${API_BASE_URL}/api/claims/trigger`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ zone: "Vadodara", platform: "Zepto" })
-      });
-      const data = await res.json();
+      const data = await api.post('/api/claims/trigger', { zone: "Vadodara", platform: "Zepto" });
       setReceipt(data);
 
       setTimeout(() => {

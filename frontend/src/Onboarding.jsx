@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import api from './api';
 import { User, Briefcase, MapPin, Zap, RefreshCw, Hexagon } from 'lucide-react';
 
 export default function Onboarding({ onComplete }) {
-  // 1. Dynamic URL variable defined at the top
-  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
-
   const [formData, setFormData] = useState({
     fullName: "Rahul Kumar",
     platform: "Zepto",
@@ -17,16 +15,8 @@ export default function Onboarding({ onComplete }) {
   const handleInitialize = async () => {
     setLoading(true);
     try {
-      // 2. Fetch call using the dynamic URL and backticks
-      const response = await fetch(`${API_BASE_URL}/api/workers/onboard`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
-        onComplete();
-      }
+      await api.post('/api/workers/onboard', formData);
+      onComplete();
     } catch (err) {
       console.error("Onboarding failed:", err);
       onComplete(); // fallback for UI demonstration

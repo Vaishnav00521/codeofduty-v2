@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import api from './api';
 import { ShieldAlert, Zap, RefreshCw, Landmark, Activity, ActivitySquare, AlertTriangle, Database, TrendingUp, Cpu, MapPin } from 'lucide-react';
 
 export default function SimulationSandbox() {
-    // 1. Add the dynamic URL variable at the top of the component
-    const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
-
     // Admin State
     const [triggerType, setTriggerType] = useState('Heavy Rainfall');
     const [severityValue, setSeverityValue] = useState(35.0);
@@ -24,13 +22,7 @@ export default function SimulationSandbox() {
         setAdminLoading(true);
 
         try {
-            // 2. Swap out the hardcoded URL using backticks
-            const res = await fetch(`${API_BASE_URL}/api/claims/simulate`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ triggerType, severityValue: parseFloat(severityValue), isGpsMatch })
-            });
-            const data = await res.json();
+            const data = await api.post('/api/claims/simulate', { triggerType, severityValue: parseFloat(severityValue), isGpsMatch });
 
             // ... the rest of your function remains the same
 

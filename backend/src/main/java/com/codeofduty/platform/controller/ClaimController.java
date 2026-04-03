@@ -24,7 +24,7 @@ import com.codeofduty.platform.dto.SimulationRequest;
 @RestController
 @RequestMapping("/api/claims")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"})
+
 public class ClaimController {
 
     private final ClaimRepository claimRepository;

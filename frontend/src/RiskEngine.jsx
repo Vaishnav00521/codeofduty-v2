@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import api from './api';
 import { BrainCircuit, TrendingUp, CloudRain, ShieldCheck, AlertOctagon, Map, RefreshCw } from 'lucide-react';
 
 export default function RiskEngine() {
-  // 1. Add the dynamic URL variable here inside your component
-  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
-
   const [riskData, setRiskData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 2. Swap out the hardcoded URL for the dynamic one using backticks
-    fetch(`${API_BASE_URL}/api/risk/summary`)
-      .then(res => res.json())
+    api.get('/api/risk/summary')
       .then(data => {
         setRiskData(data);
         setLoading(false);

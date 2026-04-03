@@ -11,7 +11,7 @@ import java.util.Map;
  * Simple controller to provide backend status and API discovery.
  */
 @RestController
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"})
+
 public class StatusController {
 
     @GetMapping("/")

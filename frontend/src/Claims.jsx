@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import api from './api';
 import {
   ClipboardList,
   Plus,
@@ -30,14 +31,9 @@ export default function Claims() {
     evidence: ""
   });
 
-  // 1. Define the dynamic base URL at the top level of your component
-  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
-
   const fetchClaims = async () => {
     try {
-      // 2. Use backticks (`) and ${} to inject the dynamic URL
-      const resp = await fetch(`${API_BASE_URL}/api/claims`);
-      const data = await resp.json();
+      const data = await api.get('/api/claims');
       setClaims(data);
     } catch (err) {
       console.error("Claims Fetch Failed:", err);
@@ -53,24 +49,16 @@ export default function Claims() {
   const handleSubmitManual = async () => {
     setSubmitting(true);
     try {
-      // 3. Update this fetch call with backticks as well
-      const res = await fetch(`${API_BASE_URL}/api/claims/manual`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      await api.post('/api/claims/manual', {
           ...manualClaim,
           payoutAmount: 0.0, // Calculated by AI in backend usually
           status: "PENDING"
-        })
       });
-      // ... rest of your function
-      if (res.ok) {
-        setSuccess(true);
-        setTimeout(() => {
-          setSuccess(false);
-          fetchClaims();
-        }, 3000);
-      }
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+        fetchClaims();
+      }, 3000);
     } catch (err) {
       console.error(err);
     } finally {

@@ -20,7 +20,7 @@ import java.util.UUID;
 @RequestMapping("/api/workers")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"})
+
 public class WorkerController {
 
     private final WorkerRepository workerRepository;

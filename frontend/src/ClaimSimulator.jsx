@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import api from './api';
 import { PlayCircle, ShieldAlert, CloudLightning, Banknote, HelpCircle, Loader2 } from 'lucide-react';
 
 export default function ClaimSimulator() {
-  // 1. Moved to the top level of the component
-  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [claimResult, setClaimResult] = useState(null);
@@ -16,18 +14,7 @@ export default function ClaimSimulator() {
     setClaimResult(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/claims/trigger`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ zone: "Koramangala", platform: "Zepto" })
-      });
-
-      if (!response.ok) {
-        // 2. Updated the error message to be accurate for production
-        throw new Error("Connection failed. Check if the backend is live.");
-      }
-
-      const data = await response.json();
+      const data = await api.post('/api/claims/trigger', { zone: "Koramangala", platform: "Zepto" });
       setClaimResult(data);
     } catch (err) {
       setError(err.message || "Failed to trigger the API.");
