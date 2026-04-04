@@ -35,7 +35,7 @@ L.Marker.prototype.options.icon = L.icon({
 });
 
 // TomTom API Key (matches backend)
-const TOMTOM_KEY = 'hdm2x34JfpKIgWTuU6jAiPDMml8QWz1j';
+const TOMTOM_KEY = import.meta.env.VITE_TOMTOM_API_KEY || '';
 
 // ─── Custom Marker Factory ───────────────────────────────────────────────────
 const createCustomIcon = (color, IconComp) => {
@@ -104,7 +104,7 @@ function WeatherIcon({ condition, size = 16 }) {
 
 export default function SmartRoute() {
   // 1. Add the dynamic URL variable at the top of your component
-  const API_BASE_URL = 'https://codeofduty-backend.onrender.com';
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
   const [routeData, setRouteData] = useState(null);
   const [loading, setLoading] = useState(true);
